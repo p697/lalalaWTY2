@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import 'antd/dist/antd.css'
+import { 
+  Button,
+  Divider,
+  Input,
+} from 'antd';
+import './index.css'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class PostFrom extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      title: '',
+      body: ''
+    }
+  }
+
+  onChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
+  onSubmit() {
+    alert(JSON.stringify(this.state))
+  }
+
+  render (){
+    return (
+      <div className="App">
+        <div>概述</div>
+        <Input name='title' onChange={e => this.onChange(e)} />
+        <Divider />
+        <div>内容</div>
+        <Input name='body' onChange={e => this.onChange(e)} />
+        <Divider />
+        <button className='btn' onClick={() => this.onSubmit()}>提交</button>
+      </div>
+    );
+  }
 }
 
-export default App;
+export default PostFrom;
